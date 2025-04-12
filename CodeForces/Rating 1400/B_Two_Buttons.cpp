@@ -1,5 +1,3 @@
-// https://codeforces.com/contest/520/problem/B
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -70,6 +68,7 @@ using namespace std;
 #define vi vector<int>
 #define vll vector<ll>
 #define vs vector<string>
+#define vb vector<bool>
 #define mii map<int, int>
 #define mll map<ll, ll>
 #define umii unordered_map<int, int>
@@ -93,8 +92,8 @@ using namespace std;
 #define q queue<int>
 #define ql queue<ll>
 // Utility Functions
-#define yes cout << "Yes\n"
-#define no cout << "No\n"
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 #define F first
 #define S second
 
@@ -106,56 +105,30 @@ ll power(ll a, ll b, ll m = mod) { ll res = 1; while (b) { if (b & 1) res = res 
 // Solve Function
 void solve() {
     // Your code here
-    int n, m;
-    cin>>n>>m;
-
-    if(n==m) {
-        cout<<0<<endl;
-        return;
-    }
-    if(n>m) {
-        cout<<n-m<<endl;
-        return;
-    }
-    // if(m%2==0) {
-    //     if(m/2>=n) {
-    //         cout<<m/2-n<<endl;
-    //         return;
-    //     } else {
-    //         cout<<m-n<<endl;
-    //         return;
-    //     }
-    // } else {
-    //     if((m+1)/2>=n) {
-    //         cout<<(m+1)/2-n+1<<endl;
-    //         return;
-    //     } else {
-    //         cout<<m-n+1<<endl;
-    //         return;
-    //     }
-    // }
-    int res=0;
-
-    if(n<m){
-        while(m!=n){
-            if(m%2==0 && m>n){
-                m/=2;
-                res+=1;
-            } else {
-                m++;
-                res+=1;
+       int n;
+        cin >> n;
+        bool ok = false;
+        while(n > 0)
+        {
+            if(!(n % 11) || !(n % 111))
+            {
+                ok = true;
+                break;
             }
+            else
+                n -= 111;
         }
-        cout<<res<<endl;
-
+        if(ok) yes;
+        else no;
         
-    }
+        return;
 }
 
 // Main Function
 int32_t main() {
-    
-    ll test=1;
+    fast_io;
+    ll test;
+    cin >> test;
     while (test--) {
         solve();
     }
