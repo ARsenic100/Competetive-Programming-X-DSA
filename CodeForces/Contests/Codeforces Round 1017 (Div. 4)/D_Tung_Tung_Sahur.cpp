@@ -1,20 +1,18 @@
-//https://codeforces.com/problemset/problem/1324/D 
-
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 // Type Aliases
 #define ll long long
 #define int long long
 #define ull unsigned long long
 #define ld long double
-
+ 
 // Constants
 #define mod 1000000007
 #define mod2 998244353
 #define inf 1e18
 #define pi 3.141592653589793238462
-
+ 
 // Vector Operations
 #define all(v) v.begin(), v.end()
 #define rall(v) v.rbegin(), v.rend()
@@ -38,32 +36,32 @@ using namespace std;
 #define ub(v, x) upper_bound(all(v), x) - v.begin()
 #define read(v) for(auto &x : v) cin >> x
 #define print(v) for(auto x : v) cout << x << " "; cout << "\n"
-
+ 
 // Macros for Loops
 #define loop(i, a, b) for (ll i = a; i < b; i++)
 #define looprev(i, a, b) for (ll i = a; i >= b; i--)
 #define trav(a, x) for (auto &a : x)
-
+ 
 // Shortcuts
 #define pb push_back
 #define ppb pop_back
 #define pf push_front
 #define ppf pop_front
 #define mp make_pair
-
+ 
 // Bitwise Operations
 #define setbits(x) __builtin_popcountll(x)
 #define zerobits(x) __builtin_ctzll(x)
 #define lsb(x) (x & -x)
 #define msb(x) (1LL << (63 - __builtin_clzll(x)))
-
+ 
 // Fast Input/Output
 #define fast_io ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-
+ 
 // Debugging
 #define debug(x) cerr << #x << " = " << x << '\n'
 #define debugArr(arr) cerr << #arr << ": "; for(auto e : arr) cerr << e << " "; cerr << '\n';
-
+ 
 // Data Structures
 #define pii pair<int, int>
 #define pll pair<ll, ll>
@@ -87,66 +85,70 @@ using namespace std;
 #define pqpmin priority_queue<pll, vector<pll>, greater<pll>>
 #define vdi vector<vector<int>>
 #define vdll vector<vector<ll>>
-
+ 
 // Stack & Queue
 #define st stack<int>
 #define stl stack<ll>
 #define q queue<int>
 #define ql queue<ll>
 // Utility Functions
-#define yes cout << "Yes\n"
-#define no cout << "No\n"
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 #define F first
 #define S second
-
+ 
 // Mathematical Functions
 ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b); }
 ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
 ll power(ll a, ll b, ll m = mod) { ll res = 1; while (b) { if (b & 1) res = res * a % m; a = a * a % m; b >>= 1; } return res; }
-
+ 
 // Solve Function
 void solve() {
-    int n;
-    cin >> n;
-
-    vll a(n);
-    read(a);
-
-    vll b(n);
-    read(b);
-
-    vll v(n, 0);
-
-    loop(i, 0, n) {
-        v[i] = a[i] - b[i];
+    string p, s;
+    cin >> p >> s;
+ 
+    int i = 0, j = 0; 
+ 
+    while (i < p.size() && j < s.size()) {
+        char current = p[i];
+        int cnt_p = 0, cnt_s = 0;
+ 
+        
+        while (i < p.size() && p[i] == current) {
+            cnt_p++;
+            i++;
+        }
+ 
+        
+        while (j < s.size() && s[j] == current) {
+            cnt_s++;
+            j++;
+        }
+ 
+        if (cnt_s < cnt_p || cnt_s > 2 * cnt_p) {
+            no;
+            return;
+        }
     }
-
-    sor(v); // Sort the array
-
-    int res = 0;
-    
-
-    loop(i, 0, n) {
-        if (v[i] <= 0) continue;
-        int pos = lb(v, -v[i] +1); 
-        res += i - pos;
+ 
+    if (i == p.size() && j == s.size()) {
+        yes;
+    } else {
+        no;
     }
-
-    cout << res << endl;
-    return;
 }
-
+ 
 // Main Function
 int32_t main() {
     fast_io;
-    ll test=1;
-    // cin >> test;
+    ll test;
+    cin >> test;
     while (test--) {
         solve();
     }
     return 0;
 }
-
+ 
 /*
   ██████╗ ██████╗ ███████╗███████╗███╗   ██╗██╗ ██████╗
   ██╔══██╗██╔══██╗██╔════╝██╔════╝████╗  ██║██║██╔════╝

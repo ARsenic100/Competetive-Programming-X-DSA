@@ -1,5 +1,3 @@
-//https://codeforces.com/problemset/problem/1324/D 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -104,43 +102,45 @@ ll gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b); }
 ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
 ll power(ll a, ll b, ll m = mod) { ll res = 1; while (b) { if (b & 1) res = res * a % m; a = a * a % m; b >>= 1; } return res; }
 
-// Solve Function
 void solve() {
-    int n;
+    ll n;
     cin >> n;
-
-    vll a(n);
-    read(a);
-
-    vll b(n);
-    read(b);
-
-    vll v(n, 0);
+    vdll v(n, vll(n, 0));
+    vector<bool> visited(2*n+1 , false);
 
     loop(i, 0, n) {
-        v[i] = a[i] - b[i];
+        loop(j, 0, n) {
+            cin >> v[i][j];
+            visited[v[i][j]]= true;
+        }
+    }
+    int xx;
+    loop(i,1,2*n+1){
+        if(visited[i] == false){
+            xx=i;
+            break;
+        }
     }
 
-    sor(v); // Sort the array
-
-    int res = 0;
-    
+    vll a;
+    a.push_back((xx + mod) % mod);
 
     loop(i, 0, n) {
-        if (v[i] <= 0) continue;
-        int pos = lb(v, -v[i] +1); 
-        res += i - pos;
+        a.push_back(v[0][i] % mod);
+    }
+    loop(i, 1, n) {
+        a.push_back(v[i][n - 1] % mod);
     }
 
-    cout << res << endl;
-    return;
+    print(a);
+
 }
 
 // Main Function
 int32_t main() {
     fast_io;
-    ll test=1;
-    // cin >> test;
+    ll test;
+    cin >> test;
     while (test--) {
         solve();
     }

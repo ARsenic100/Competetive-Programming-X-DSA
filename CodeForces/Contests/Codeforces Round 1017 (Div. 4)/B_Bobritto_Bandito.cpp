@@ -1,5 +1,3 @@
-//https://codeforces.com/problemset/problem/1324/D 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -105,42 +103,30 @@ ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
 ll power(ll a, ll b, ll m = mod) { ll res = 1; while (b) { if (b & 1) res = res * a % m; a = a * a % m; b >>= 1; } return res; }
 
 // Solve Function
+#include <iostream>
+#include <cmath> // for round
+using namespace std;
+
 void solve() {
-    int n;
-    cin >> n;
+    int n, m, l, r;
+    cin >> n >> m >> l >> r;
 
-    vll a(n);
-    read(a);
+    // Convert to double for accurate division
+    double ratio = static_cast<double>(m) / n;
 
-    vll b(n);
-    read(b);
+    // Calculate and round
+    int resultl = round(ratio * l);
+    int resultr = round(ratio * r);
 
-    vll v(n, 0);
-
-    loop(i, 0, n) {
-        v[i] = a[i] - b[i];
-    }
-
-    sor(v); // Sort the array
-
-    int res = 0;
-    
-
-    loop(i, 0, n) {
-        if (v[i] <= 0) continue;
-        int pos = lb(v, -v[i] +1); 
-        res += i - pos;
-    }
-
-    cout << res << endl;
-    return;
+    cout << resultl << " " << resultr << endl;
 }
+
 
 // Main Function
 int32_t main() {
     fast_io;
-    ll test=1;
-    // cin >> test;
+    ll test;
+    cin >> test;
     while (test--) {
         solve();
     }

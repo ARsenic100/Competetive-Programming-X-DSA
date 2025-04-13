@@ -1,5 +1,3 @@
-//https://codeforces.com/problemset/problem/1324/D 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -106,41 +104,23 @@ ll power(ll a, ll b, ll m = mod) { ll res = 1; while (b) { if (b & 1) res = res 
 
 // Solve Function
 void solve() {
-    int n;
-    cin >> n;
+    // Your code here
+    string s1, s2 , s3;
+    cin>>s1>>s2>>s3;
 
-    vll a(n);
-    read(a);
+    cout<<s1[0];
+    cout<<s2[0];
+    cout<<s3[0]<<endl;
 
-    vll b(n);
-    read(b);
 
-    vll v(n, 0);
 
-    loop(i, 0, n) {
-        v[i] = a[i] - b[i];
-    }
-
-    sor(v); // Sort the array
-
-    int res = 0;
-    
-
-    loop(i, 0, n) {
-        if (v[i] <= 0) continue;
-        int pos = lb(v, -v[i] +1); 
-        res += i - pos;
-    }
-
-    cout << res << endl;
-    return;
 }
 
 // Main Function
 int32_t main() {
     fast_io;
-    ll test=1;
-    // cin >> test;
+    ll test;
+    cin >> test;
     while (test--) {
         solve();
     }
